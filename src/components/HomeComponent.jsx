@@ -63,7 +63,7 @@ const HomeComponent = () => {
             className="w-100  img-fluid"
             style={{ maxHeight: "500px", objectFit: "cover" }}
           />
-          <div className="hero-text position-absoluet top-50 start-50 translate-middle text-center bg-dark-opacity-50 p-4 rounded">
+          <div className="hero-text position-absolute top-50 start-50 translate-middle text-center bg-dark-opacity-50 p-4 rounded">
             <h1 className="display-1 fw-bold">welcome to Masomo School</h1>
             <p className="lead">
               we are the school that provides quality education to our students{" "}
