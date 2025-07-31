@@ -22,6 +22,13 @@ const RegisterComponent = () => {
         <input type="phone" className='form-control mb-3' placeholder='phone' value={phone} onChange={(e)=>setPhone(e.target.value)} required />
         {phone}
 
+        <div className='d-grid mb-3'>
+          <button type='submit' className='btn btn-success'>Register</button>
+        </div>
+        <div className="text-center">
+          <p>Already have an account? <Link to='/' className='text-decoration-none'>Login</Link></p>
+        </div>
+
 
     </form>
    </div>
