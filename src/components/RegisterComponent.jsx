@@ -103,7 +103,7 @@ const RegisterComponent = () => {
         <div className="text-center">
           <p>
             Already have an account?
-            <Link to="/" className="text-decoration-none">
+            <Link to="/login" className="text-decoration-none">
               Login
             </Link>
           </p>
