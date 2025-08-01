@@ -9,18 +9,34 @@ import NotFound from "./components/NotFound";
 
 import RegisterComponent from "./components/RegisterComponent";
 import LoginComponent from "./components/LoginComponent";
+import ProtectedRoute from "./context/ProtectedRoute";
+import AdminDashBoard from "./components/admin/AdminDashBoard";
+import AdminLayout from "./components/admin/AdminLayout";
+import {AuthProvider} from "./context/AuthContext";
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<HomeComponent />} />
-        <Route path="/register" element={<RegisterComponent />} />
-        <Route path="/login" element={<LoginComponent/>} />
-        {/* default routes */}
-        <Route path="/not-authorized" element={<NotAuthorized />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      {/* we wrap all routes inside the authprovider */}
+      <AuthProvider>
+        <Routes>
+          {/* Admin protected Routes */}
+          <Route path='/admin-dashboard'
+          element={
+          <ProtectedRoute allowedRoles={['admin']}>
+            <AdminLayout/>
+          </ProtectedRoute>}>
+          <Route path='' element={<AdminDashBoard/>} />
+          </Route>
+          
+          <Route path="/" element={<HomeComponent />} />
+          <Route path="/register" element={<RegisterComponent />} />
+          <Route path="/login" element={<LoginComponent />} />
+          {/* default routes */}
+          <Route path="/not-authorized" element={<NotAuthorized />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </AuthProvider>
     </Router>
   );
 }
