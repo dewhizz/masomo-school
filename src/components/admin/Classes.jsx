@@ -23,6 +23,7 @@ const Classes = () => {
         authHeader
       );
       setClasses(res.data);
+      console.log(res.data)
       toast.dismiss();
     } catch (error) {
       toast.dismiss();
@@ -34,6 +35,21 @@ const Classes = () => {
   useEffect(() => {
     FetchClasses();
   }, []);
+
+//   delete function
+const handleDelete=async (id)=>{
+    if(window.confirm('Delete this class'))
+        try {
+            toast .warning('Deleting Credentials')
+            await axios.delete(
+              `https://school-api-fexk.onrender.com/api/classroom/${id}`,authHeader)
+              toast.info(res.data.message)
+        } catch (error) {
+            toast.dismiss()
+            toast.error(error.response?.data?.message)
+
+        }
+}
 
   return (
     <div className="container mt-2">
@@ -81,7 +97,29 @@ const Classes = () => {
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody></tbody>
+              <tbody>
+                {classes.map((cls, index) => (
+                  <tr key={cls._id}>
+                    <td>{index + 1}</td>
+                    <td>{cls.name}</td>
+                    <td>{cls.gradeLevel}</td>
+                    <td>{cls.classYear}</td>
+                    <td>{cls.teacher?.name || "N/A"}</td>
+                    <td>{cls.teacher?.phone || "N/A"}</td>
+                    <td>
+                      <button className="btn btn-sm btn-warning me-2">
+                        <i className="bi bi-pencil-square"></i>
+                      </button>
+
+                      <button className="btn btn-sm btn-danger me-2"
+                      onClick={()=>handleDelete(cls._id)}
+                      >
+                        <i className="bi bi-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
           )}
         </div>
