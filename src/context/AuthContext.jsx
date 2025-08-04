@@ -1,19 +1,28 @@
-const { useState, createContext, useCallback, useEffect } = require("react");
-const { useNavigate } = require("react-router-dom");
-const { jwtDecode } = require("jwt-decode");
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
-export const AuthContext = createContext();
+const { createContext, useCallback, useState, useEffect } = require("react");
 
-export const AuthProvider = ({ children }) => {
+const AuthContext = createContext();
+const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
-
-  // initialze state from local storage
+  //initialize states from local storage
   const [token, setToken] = useState(() => localStorage.getItem("token") || "");
-  const [user, setUser] = useState(() =>
-    JSON.parse(localStorage.getItem("user" || "null"))
-  );
+  const [user, setUser] = useState(() => {
+    try {
+      const stored = localStorage.getItem("user");
+      if (!stored) return null;
 
-  // Logout
+      const parsed = JSON.parse(stored);
+      return parsed ?? null; // Handles undefined explicitly
+    } catch (err) {
+      console.error("Failed to parse user from localStorage:", err);
+      return null;
+    }
+  });
+
+
+  //logout
   const logout = useCallback(() => {
     localStorage.clear();
     setToken("");
@@ -35,12 +44,11 @@ export const AuthProvider = ({ children }) => {
     }
   }, [token, logout]);
 
-  // return
+  //return
   return (
-    <AuthContext.Provider value={{ token, user, logout, setToken, setUser }}>
+    <AuthContext.Provider value={{ token, setToken, user, setUser, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
-
-// export default { AuthContext,AuthProvider };
+export { AuthProvider, AuthContext };

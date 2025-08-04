@@ -11,10 +11,10 @@ const SideBar = () => {
       }}
     >
       <h4 className="text-center mb-4">
-        <i className="bi bi-speedometer2 me-3">Admin Panel</i>
+        <i className="bi bi-speedometer2 me-3"></i>Admin Panel
       </h4>
       <ul className="nav nav-pills flex-column mb-auto">
-        <li className="nav-item">
+        <li className="nav-item mb-4">
           <NavLink
             to="/admin-dashboard"
             end
@@ -24,13 +24,13 @@ const SideBar = () => {
                 : "nav-link text-light"
             }
           >
-            <i className="bi bi-grid me-2">Dashboard</i>
+            <i className="bi bi-grid me-2 mb-4"></i>Dashboard
           </NavLink>
         </li>
 
         <li className="nav-item">
           <NavLink
-            to="/admin-dashboard"
+            to="/admin-dashboard/students"
             end
             className={({ isActive }) =>
               isActive
@@ -38,7 +38,49 @@ const SideBar = () => {
                 : "nav-link text-light"
             }
           >
-            <i className="bi bi-person-lines-fill me-2">Dashboard</i>
+            <i className="bi bi-person-lines-fill me-2"></i>Students
+          </NavLink>
+        </li>
+
+        <li className="nav-item">
+          <NavLink
+            to="/admin-dashboard/parents"
+            end
+            className={({ isActive }) =>
+              isActive
+                ? "nav-link bg-success text-light fw-bold"
+                : "nav-link text-light"
+            }
+          >
+            <i className="bi bi-person-plus-fill me-2"></i>Parents
+          </NavLink>
+        </li>
+
+        <li className="nav-item">
+          <NavLink
+            to="/admin-dashboard/teachers"
+            end
+            className={({ isActive }) =>
+              isActive
+                ? "nav-link bg-success text-light fw-bold"
+                : "nav-link text-light"
+            }
+          >
+            <i className="bi bi-person-badge-fill me-2"></i>Teachers
+          </NavLink>
+        </li>
+
+        <li className="nav-item">
+          <NavLink
+            to="/admin-dashboard/classes"
+            end
+            className={({ isActive }) =>
+              isActive
+                ? "nav-link bg-success text-light fw-bold"
+                : "nav-link text-light"
+            }
+          >
+            <i className="bi bi-journal-bookmark me-2"></i>Classes
           </NavLink>
         </li>
       </ul>
