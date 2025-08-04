@@ -4,10 +4,10 @@ import { NavLink } from 'react-router-dom'
 const SideBar = () => {
   return (
     <div
-      className="text-light d-flex flex-columns p-3"
+      className="text-light d-flex flex-column p-3"
       style={{
         width: "250px",
-        background: "linear-gradient(135deg,rgb(12,79,46) rgb(54,66,159))",
+        background: "linear-gradient(135deg,rgb(12,79,46),rgb(54,66,159))",
       }}
     >
       <h4 className="text-center mb-4">
