@@ -23,7 +23,7 @@ const LoginComponent = () => {
           const res = await axios.post(
             "https://school-api-fexk.onrender.com/api/user/Auth/",
             data);
-
+console.log(res.data)
             const{token,user}=res.data
             setToken(token)
             setUser(user)
