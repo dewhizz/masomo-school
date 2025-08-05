@@ -23,7 +23,7 @@ const Classes = () => {
         authHeader
       );
       setClasses(res.data);
-      console.log(res.data)
+      console.log(res.data);
       toast.dismiss();
     } catch (error) {
       toast.dismiss();
@@ -36,20 +36,26 @@ const Classes = () => {
     FetchClasses();
   }, []);
 
-//   delete function
-const handleDelete=async (id)=>{
-    if(window.confirm('Delete this class'))
-        try {
-            toast .warning('Deleting Credentials')
-            await axios.delete(
-              `https://school-api-fexk.onrender.com/api/classroom/${id}`,authHeader)
-              toast.info(res.data.message)
-        } catch (error) {
-            toast.dismiss()
-            toast.error(error.response?.data?.message)
+  //   delete function
+  const handleDelete = async (id) => {
+    if (window.confirm("Delete this class"))
+      try {
+        toast.warning("Deleting Credentials");
+        const res = await axios.delete(
+          `https://school-api-fexk.onrender.com/api/classroom/${id}`,
+          authHeader
+        );
+        toast.info(res.data.message);
+      } catch (error) {
+        toast.dismiss();
+        toast.error(error.response?.data?.message);
+      }
+  };
 
-        }
-}
+  // handle edit
+  const handleEdit = (classData) => {
+    navigate("/admin-dashboard/classes/edit", { state: { classData } });
+  };
 
   return (
     <div className="container mt-2">
@@ -73,7 +79,10 @@ const handleDelete=async (id)=>{
           <h5 className="text-success">
             <i className="bi bi-building me-2"></i>Classes List
           </h5>
-          <button className="btn btn-success">
+          <button
+            className="btn btn-success"
+            onClick={() => navigate("/admin-dashboard/classes/add")}
+          >
             <i className="bi bi-plus-circle"></i> Add Class
           </button>
         </div>
@@ -107,12 +116,16 @@ const handleDelete=async (id)=>{
                     <td>{cls.teacher?.name || "N/A"}</td>
                     <td>{cls.teacher?.phone || "N/A"}</td>
                     <td>
-                      <button className="btn btn-sm btn-warning me-2">
+                      <button
+                        className="btn btn-sm btn-warning me-2"
+                        onClick={() => handleEdit(cls)}
+                      >
                         <i className="bi bi-pencil-square"></i>
                       </button>
 
-                      <button className="btn btn-sm btn-danger me-2"
-                      onClick={()=>handleDelete(cls._id)}
+                      <button
+                        className="btn btn-sm btn-danger me-2"
+                        onClick={() => handleDelete(cls._id)}
                       >
                         <i className="bi bi-trash"></i>
                       </button>
