@@ -91,7 +91,8 @@ const Teachers = () => {
         <div className="table-responsive">
           {teachers.length === 0 ? (
             <div className="alert alert-warning text-center">
-              <i className="bi bi-exclamation-circle me-2"></i>No Teachers Found!
+              <i className="bi bi-exclamation-circle me-2"></i>No Teachers
+              Found!
             </div>
           ) : (
             <table className="table table-striped table-hover table-bordered">
@@ -102,6 +103,7 @@ const Teachers = () => {
                   <th>Email</th>
                   <th>Phone</th>
                   <th>Subject</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>

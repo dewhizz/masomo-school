@@ -83,6 +83,20 @@ const SideBar = () => {
             <i className="bi bi-journal-bookmark me-2"></i>Classes
           </NavLink>
         </li>
+
+        <li className="nav-item">
+          <NavLink
+            to="/admin-dashboard/inquires"
+            end
+            className={({ isActive }) =>
+              isActive
+                ? "nav-link bg-success text-light fw-bold"
+                : "nav-link text-light"
+            }
+          >
+            <i className="bi bi-journal-bookmark me-2"></i>Inquires
+          </NavLink>
+        </li>
       </ul>
     </div>
   );

@@ -21,6 +21,9 @@ import ClassAdd from "./components/admin/forms/ClassAdd";
 import ClassEdit from "./components/admin/forms/ClassEdit";
 import TeacherAdd from "./components/admin/forms/TeacherAdd";
 import TeacherEdit from "./components/admin/forms/TeacherEdit";
+import ParentAdd from "./components/admin/forms/ParentAdd";
+import ParentEdit from "./components/admin/forms/ParentEdit";
+import Inquiries from "./components/admin/Inquires";
 
 function App() {
   return (
@@ -41,13 +44,16 @@ function App() {
             <Route path="classes" element={<Classes />} />
             <Route path="classes/add" element={<ClassAdd />} />
             <Route path="classes/edit" element={<ClassEdit />} />
-            
+
             <Route path="teachers" element={<Teachers />} />
             <Route path="teachers/add" element={<TeacherAdd />} />
             <Route path="teachers/edit" element={<TeacherEdit />} />
 
             <Route path="students" element={<Student />} />
             <Route path="parents" element={<Parents />} />
+            <Route path="parents/add" element={<ParentAdd />} />
+            <Route path="parents/edit" element={<ParentEdit />} />
+
           </Route>
 
           <Route path="/" element={<HomeComponent />} />
