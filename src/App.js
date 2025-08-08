@@ -25,6 +25,7 @@ import ParentAdd from "./components/admin/forms/ParentAdd";
 import ParentEdit from "./components/admin/forms/ParentEdit";
 import StudentsAdd from "./components/admin/forms/StudentsAdd";
 import StudentsEdit from "./components/admin/forms/StudentsEdit";
+import ParentLayout from "./components/parent/ParentLayout";
 
 function App() {
   return (
@@ -57,6 +58,32 @@ function App() {
             <Route path="parents" element={<Parents />} />
             <Route path="parents/add" element={<ParentAdd />} />
             <Route path="parents/edit" element={<ParentEdit />} />
+          </Route>
+
+          {/* Teacher protected Routes */}
+          <Route
+            path="/admin-dashboard"
+            element={
+              <ProtectedRoute allowedRoles={["admin"]}>
+                <AdminLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route path="" element={<TeacherDashBoard />} />
+            
+          </Route>
+
+          {/* Parent protected Routes */}
+          <Route
+            path="/admin-dashboard"
+            element={
+              <ProtectedRoute allowedRoles={["parent"]}>
+                <ParentLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route path="" element={<ParentDashboard />} />
+           
           </Route>
 
           <Route path="/" element={<HomeComponent />} />
