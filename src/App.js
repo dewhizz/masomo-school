@@ -49,6 +49,7 @@ function App() {
 
             <Route path="teachers" element={<Teachers />} />
             <Route path="teachers/add" element={<TeacherAdd />} />
+            
             <Route path="teachers/edit" element={<TeacherEdit />} />
 
             <Route path="students" element={<Student />} />
